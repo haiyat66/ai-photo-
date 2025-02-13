@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://www.w3schools.com/css/img_forest.jpg');
+            background-size: cover;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            border: 10px solid #f9d342;
+            border-radius: 15px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            animation: rotateColor 5s infinite;
+        }
+        @keyframes rotateColor {
+            0% { color: #ff5733; }
+            25% { color: #33ff57; }
+            50% { color: #3357ff; }
+            75% { color: #ff33a2; }
+            100% { color: #ff5733; }
+        }
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px #000;
+            animation: colorChange 5s infinite;
+        }
+        @keyframes colorChange {
+            0% { color: #ff5733; }
+            50% { color: #3357ff; }
+            100% { color: #ff5733; }
+        }
+        .input-container {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        #loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        #download {
+            display: none;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #28a745;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        #download:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Image Generator</h1>
+    <p>Developer by: Haiyat Mahmud</p>
+    
+    <div class="input-container">
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" name="prompt" placeholder="Type your prompt here...">
+    </div>
+    <button onclick="generateImage()">Generate Image</button>
+
+    <div id="loading">Loading image, please wait...</div>
+    <a id="download" href="#" download="generated_image.png">Open image</a>
+
+    <script>
+        function generateImage() {
+            const prompt = document.getElementById('prompt').value;
+            const loading = document.getElementById('loading');
+            const downloadLink = document.getElementById('download');
+
+            if (!prompt) {
+                alert('Please enter a prompt!');
+                return;
+            }
+
+            loading.style.display = 'block';
+            downloadLink.style.display = 'none';
+
+            // Simulate image generation process
+            setTimeout(() => {
+                loading.style.display = 'none';
+                // In a real application, you would replace the following URL with the URL of the generated image
+                const generatedImageUrl = `http://riad.infy.uk/aiimagegen.php?prompt=${encodeURIComponent(prompt)}`;
+                downloadLink.href = generatedImageUrl;
+                downloadLink.style.display = 'block';
+            }, 3000); // Simulating a 3-second image generation time
+        }
+    </script>
+</body>
+</html>
